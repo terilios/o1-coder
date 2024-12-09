@@ -32,8 +32,8 @@ This project provides a user-friendly Streamlit application to parse XML data an
 
 1. Clone this repository:
    ```bash
-   git clone <repository_url>
-   cd <repository_directory>
+   git clone https://github.com/terilios/o1-coder/
+   cd o1-coder
    ```
 
 2. Install the required Python dependencies:
