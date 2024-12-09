@@ -1,4 +1,3 @@
-
 # XML-to-Code Updater with Streamlit
 
 This project provides a user-friendly Streamlit application to parse XML data and update code files dynamically based on the parsed data. Additionally, it offers support for manual editing using the XML Tools extension in Visual Studio Code for advanced use cases.
@@ -6,13 +5,16 @@ This project provides a user-friendly Streamlit application to parse XML data an
 ## Features
 
 - **Dual Input Options**:
+
   - Upload XML and code files directly.
   - Paste XML and code content into text areas for quick processing.
 
 - **Streamlit App**:
+
   - Parses XML content and identifies replacement values.
   - Applies replacements to placeholders in the target Python code file.
   - Displays and allows download of the updated code.
+  - Supports file operations (CREATE, UPDATE, DELETE) based on XML input.
 
 - **Visual Studio Code Support**:
   - Leverage the XML Tools extension for advanced XML parsing and editing.
@@ -31,12 +33,14 @@ This project provides a user-friendly Streamlit application to parse XML data an
 ### Setup
 
 1. Clone this repository:
+
    ```bash
-   git clone https://github.com/terilios/o1-coder/
+   git clone [<repository_url>](https://github.com/terilios/o1-coder/)
    cd o1-coder
    ```
 
 2. Install the required Python dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -51,6 +55,7 @@ This project provides a user-friendly Streamlit application to parse XML data an
 ## Running the Streamlit Application
 
 1. Start the Streamlit server:
+
    ```bash
    streamlit run streamlit_app.py
    ```
@@ -64,36 +69,51 @@ This project provides a user-friendly Streamlit application to parse XML data an
 ### Streamlit App Workflow
 
 1. **Provide XML Input**:
+
    - Choose "Paste XML Text" or "Upload a File".
-   - Paste or upload the XML content containing replacement values.
+   - Paste or upload the XML content containing replacement values and file operations.
 
 2. **Provide Code Input**:
+
    - Choose "Paste Code Text" or "Upload a File".
    - Paste or upload the Python code file with placeholders.
 
 3. **Apply Changes**:
+
    - Click "Apply Changes" to replace placeholders in the code.
    - Review the updated code in the app and download it.
+
+4. **Apply File Changes**:
+   - Enter the project directory path.
+   - Click "Apply File Changes" to execute file operations (CREATE, UPDATE, DELETE) based on the XML input.
 
 ---
 
 ### Example XML and Code Files
 
 #### XML File
+
 ```xml
 <root>
     <element name="variable_1">Value 1</element>
     <element name="variable_2">Value 2</element>
+    <file>
+        <file_operation>CREATE</file_operation>
+        <file_path>new_file.py</file_path>
+        <file_code>print("Hello, World!")</file_code>
+    </file>
 </root>
 ```
 
 #### Code File
+
 ```python
 variable_1 = "{{variable_1}}"
 variable_2 = "{{variable_2}}"
 ```
 
 #### Output
+
 ```python
 variable_1 = "Value 1"
 variable_2 = "Value 2"
@@ -117,7 +137,7 @@ For users who prefer manual editing or want advanced XML capabilities:
 
 ```
 .
-├── streamlit_app_updated.py   # Streamlit application
+├── streamlit_app.py           # Streamlit application
 ├── requirements.txt           # Python dependencies
 ├── Dockerfile                 # Docker container setup
 ├── .dockerignore              # Docker ignored files
@@ -130,13 +150,15 @@ For users who prefer manual editing or want advanced XML capabilities:
 ## Running in Docker (Optional)
 
 1. Build the Docker image:
+
    ```bash
-   docker build -t xml-to-code-updater .
+   docker build -t o1-coder .
    ```
 
 2. Run the Docker container:
+
    ```bash
-   docker run -p 8501:8501 xml-to-code-updater
+   docker run -p 8501:8501 o1-coder
    ```
 
 3. Access the app at `http://localhost:8501`.
